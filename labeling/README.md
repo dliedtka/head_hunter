@@ -1,6 +1,6 @@
 # labeling
 
-Before training a [face localizer](..), we'll first use a Flask web app to manually label a reasonable number of images.
+Before training a [face localizer](https://github.com/dliedtka/head_hunter), we'll first use a Flask web app to manually label a reasonable number of images.
 
 
 ## Usage 

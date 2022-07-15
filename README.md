@@ -5,7 +5,7 @@ Object localization (basic face localization) with PyTorch.
 
 ## Manual Labeling
 
-In attempting to build a face localizer, we'll first manually label a reasonable number of images and see how training on a small dataset performs before deciding whether to proceed. To speed up labeling, we'll use a [Flask web app](./labeling).
+In attempting to build a face localizer, we'll first manually label a reasonable number of images and see how training on a small dataset performs before deciding whether to proceed. To speed up labeling, we'll use a [Flask web app](https://github.com/dliedtka/head_hunter/tree/main/labeling).
 
 
 ## Face Localization
