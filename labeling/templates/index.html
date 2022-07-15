@@ -6,16 +6,53 @@
     </head>
     
     <body>
-        <p>Hello world. Instructions to follow.</p>
-        <br />
+        <p>
+            The picture on the left with the box on it is the picture you just labeled. 
+            If it's a bad label, click the undo button to label it again. 
+            The picture on the right is the next picture for you to label. 
+            First click the top left corner of the face. 
+            Then click the bottom right corner of the face. 
+            Finally, click submit.  
+        </p>
+        <p>Click 1: <span id="js_tl"></span> Click 2: <span id="js_br"></span></p>
+        
+        <form action="/" method="post">
+            <input id="tl_x" name="tl_x" type="hidden" value="" />
+            <input id="tl_y" name="tl_y" type="hidden" value="" />
+            <input id="br_x" name="br_x" type="hidden" value="" />
+            <input id="br_y" name="br_y" type="hidden" value="" />
+            <input name="undo" type="submit" value="Undo" />
+            <input name="submit" type="submit" value="Submit" />
+        </form>
+        <br/>
 
-        {% if not first %}
-        <img src="{{ url_for('static', filename='just_labeled.jpg') }}" width=500px style="float:left;padding-right:250px" />
+        {% if first %}
+        <img id="last_img" src="{{ url_for('static', filename='just_labeled.jpg') }}" style="opacity:0.0;padding-right:250px" draggable="False" />
+        {% else %}
+        <img id="last_img" src="{{ url_for('static', filename='just_labeled.jpg') }}" style="padding-right:250px" draggable="False" />
         {% endif %}
 
         {% if not last %}
-        <img src="{{ url_for('static', filename='label_me.jpg') }}" width=500px style="float:left;" />
+        <img id="cur_img" src="{{ url_for('static', filename='label_me.jpg') }}" draggable="False" />
         {% endif %}
+
+        <script type="text/javascript">
+            // for labeling image
+            document.getElementById("cur_img").onclick = function(event) {
+                var x = event.clientX;
+                var y = event.clientY;
+                if (document.getElementById("tl_x").value === "") {
+                    document.getElementById("tl_x").value = x;
+                    document.getElementById("tl_y").value = y;
+                    document.getElementById("js_tl").innerHTML = "(" + x + ", " + y + ")";
+                }
+                else if (document.getElementById("br_x").value === "") {
+                    document.getElementById("br_x").value = x;
+                    document.getElementById("br_y").value = y;
+                    document.getElementById("js_br").innerHTML = "(" + x + ", " + y + ")";
+                }
+            }
+        </script>
     
     </body>
 

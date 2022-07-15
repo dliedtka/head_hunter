@@ -10,16 +10,13 @@ In attempting to build a face localizer, we'll first manually label a reasonable
 
 ## To Do
 
-- JavaScript to draw box, scale, send back with POST. Visual feedback? Will need to integrate forms.
-- Write box info to file.
-- Display box on previous.
-- Undo option.
+- PIL to draw box on last image
+- Invalid image option? 
 
 
 ## Install 
 
 - Flask
-- Flask-WTF (?)
 
 
 ## Eventual Workflow
