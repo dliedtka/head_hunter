@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    
+    <head>
+        <title>Labeling Data</title>
+    </head>
+    
+    <body>
+        <p>Hello world. Instructions to follow.</p>
+        <br />
+
+        {% if not first %}
+        <img src="{{ url_for('static', filename='just_labeled.jpg') }}" width=500px style="float:left;padding-right:250px" />
+        {% endif %}
+
+        {% if not last %}
+        <img src="{{ url_for('static', filename='label_me.jpg') }}" width=500px style="float:left;" />
+        {% endif %}
+    
+    </body>
+
+</html>

@@ -3,6 +3,25 @@
 Object localization (basic face localization) with PyTorch.
 
 
+## Manual Labeling
+
+In attempting to build a face localizer, we'll first manually label a reasonable number of images and see how training on a small dataset performs before deciding whether to proceed. To speed up labeling, we'll use a Flask web app.
+
+
+## To Do
+
+- JavaScript to draw box, scale, send back with POST. Visual feedback? Will need to integrate forms.
+- Write box info to file.
+- Display box on previous.
+- Undo option.
+
+
+## Install 
+
+- Flask
+- Flask-WTF (?)
+
+
 ## Eventual Workflow
 
 1. Scrape images for dataset, see [selfie_scraper repo](https://github.com/dliedtka/selfie_scraper).
