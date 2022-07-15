@@ -14,7 +14,7 @@
             Then click the bottom right corner of the face. 
             Finally, click submit.  
         </p>
-        <p>Click 1: <span id="js_tl"></span> Click 2: <span id="js_br"></span></p>
+        <p>Images Labeled: {{ count }} / {{ total }}, Click 1: <span id="js_tl"></span> Click 2: <span id="js_br"></span></p>
         
         <form action="/" method="post">
             <input id="tl_x" name="tl_x" type="hidden" value="" />
@@ -26,13 +26,13 @@
         </form>
         <br/>
 
-        {% if first %}
+        {% if count == 0 %}
         <img id="last_img" src="{{ url_for('static', filename='just_labeled.jpg') }}" style="opacity:0.0;padding-right:250px" draggable="False" />
         {% else %}
         <img id="last_img" src="{{ url_for('static', filename='just_labeled.jpg') }}" style="padding-right:250px" draggable="False" />
         {% endif %}
 
-        {% if not last %}
+        {% if count != total %}
         <img id="cur_img" src="{{ url_for('static', filename='label_me.jpg') }}" draggable="False" />
         {% endif %}
 

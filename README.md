@@ -10,7 +10,7 @@ In attempting to build a face localizer, we'll first manually label a reasonable
 
 ## Face Localization
 
-
+May want to do some data transforms since we only have about 3,000 images.
 
 
 ## Eventual Workflow

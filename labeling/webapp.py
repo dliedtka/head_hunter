@@ -69,10 +69,10 @@ def index():
             # x,y in center of image
             x = int((tl_x + br_x) / 2) - 760 # subtract constant from webpage layout
             y = int((tl_y + br_y) / 2) - 140 # subtract constant from webpage layout
+            # height,width
             w = br_x - tl_x
             h = br_y - tl_y
-            # height,width
-            print (f"Top left: ({x},{y}), Width: {w}, Height: {h}")
+            #print (f"Top left: ({x},{y}), Width: {w}, Height: {h}")
             # update data structure
             add_label(x, y, w, h)
             # increment counter
@@ -81,33 +81,29 @@ def index():
     # copy image just labeled to static directory
     if img_idx > 0:
         shutil.copy(f"{dataset_dir}/{os.listdir(dataset_dir)[img_idx-1]}", f"{dir_path}/static/just_labeled.jpg")
-        first = False
     else:
         shutil.copy(f"{dataset_dir}/{os.listdir(dataset_dir)[img_idx]}", f"{dir_path}/static/just_labeled.jpg")
-        first = True
-    
+        
     # copy image to be labeled to static directory
     if img_idx < len(os.listdir(dataset_dir)):
         shutil.copy(f"{dataset_dir}/{os.listdir(dataset_dir)[img_idx]}", f"{dir_path}/static/label_me.jpg")
-        last = False
-    else:
-        last = True
-
+        
     # modify labeled image
     last_img = Image.open(f"{dir_path}/static/just_labeled.jpg")
     # make square
     last_img = make_square(last_img)
     # resize to 500x500
     last_img = last_img.resize((500,500))
-    # box coordinates
-    x,y,w,h = labels[-1]
-    x1 = x - int(w/2)
-    y1 = y - int(h/2)
-    x2 = x + int(w/2)
-    y2 = y + int(h/2)
-    # draw box
-    box = ImageDraw.Draw(last_img)  
-    box.rectangle([x1,y1,x2,y2], outline ="red")
+    if img_idx > 0:
+        # box coordinates
+        x,y,w,h = labels[-1]
+        x1 = x - int(w/2)
+        y1 = y - int(h/2)
+        x2 = x + int(w/2)
+        y2 = y + int(h/2)
+        # draw box
+        box = ImageDraw.Draw(last_img)  
+        box.rectangle([x1,y1,x2,y2], outline ="red")
     last_img.save(f"{dir_path}/static/just_labeled.jpg")
 
     # modify image to label
@@ -119,7 +115,7 @@ def index():
         cur_img = cur_img.resize((500,500))
         cur_img.save(f"{dir_path}/static/label_me.jpg")
         
-    return render_template("index.html", first=first, last=last)
+    return render_template("index.html", count=img_idx, total=len(os.listdir(f"{dataset_dir}")))
 
 
 if __name__ == "__main__":
