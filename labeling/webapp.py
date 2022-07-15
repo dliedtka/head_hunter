@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request
 import pickle
 import shutil
-from PIL import Image
+from PIL import Image, ImageDraw
 import sys
 import os
 
@@ -29,6 +29,7 @@ def make_square(im, fill_color=(0, 0, 0, 0)):
 
 
 def undo_label():
+    global labels
     labels = labels[:-1]
     with open(f"{dir_path}/output/labels.pkl", "wb") as fout:
         pickle.dump(labels, fout)
@@ -98,7 +99,15 @@ def index():
     last_img = make_square(last_img)
     # resize to 500x500
     last_img = last_img.resize((500,500))
+    # box coordinates
+    x,y,w,h = labels[-1]
+    x1 = x - int(w/2)
+    y1 = y - int(h/2)
+    x2 = x + int(w/2)
+    y2 = y + int(h/2)
     # draw box
+    box = ImageDraw.Draw(last_img)  
+    box.rectangle([x1,y1,x2,y2], outline ="red")
     last_img.save(f"{dir_path}/static/just_labeled.jpg")
 
     # modify image to label
