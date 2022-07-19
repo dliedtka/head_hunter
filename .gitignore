@@ -1,6 +1,8 @@
 static/
 output/
 command.sh
+labels.pkl
+images
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
